@@ -1,0 +1,7 @@
+node_modules
+src
+tests
+scripts
+*.map
+*.log
+.env*

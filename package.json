@@ -1,0 +1,37 @@
+{
+  "name": "team-talkie",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A private, screen-share-safe speaking queue for small teams.",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "concurrently -k -n server,app -c magenta,cyan \"npm:dev:server\" \"npm:dev:app\"",
+    "dev:server": "npm run dev -w @talkie/server",
+    "dev:app": "npm run dev -w @talkie/desktop",
+    "dev:web": "concurrently -k -n server,web -c magenta,cyan \"npm:dev:server\" \"npm run dev:web -w @talkie/desktop\"",
+    "build": "npm run build -w @talkie/server && npm run build -w @talkie/desktop",
+    "build:server": "npm run build -w @talkie/server",
+    "build:app": "npm run build -w @talkie/desktop",
+    "build:web": "npm run build:web -w @talkie/desktop",
+    "typecheck": "npm run typecheck -w @talkie/protocol && npm run typecheck -w @talkie/server && npm run typecheck -w @talkie/desktop",
+    "test": "npm run test -w @talkie/server",
+    "smoke": "npm run build:server && node scripts/smoke.mjs",
+    "capture": "electron scripts/capture.cjs",
+    "icons": "node scripts/generate-icons.mjs",
+    "dist:win": "npm run dist:win -w @talkie/desktop",
+    "dist:mac": "npm run dist:mac -w @talkie/desktop",
+    "dist:linux": "npm run dist:linux -w @talkie/desktop",
+    "clean": "node scripts/clean.mjs"
+  },
+  "devDependencies": {
+    "concurrently": "^10.0.6",
+    "sharp": "^0.35.2",
+    "typescript": "^5.9.3"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

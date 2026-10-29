@@ -1,0 +1,23 @@
+# dependencies
+node_modules/
+
+# builds
+apps/desktop/out/
+apps/desktop/out-web/
+apps/desktop/release/
+apps/server/dist/
+*.tsbuildinfo
+
+# env
+.env
+.env.local
+.env.*.local
+apps/desktop/.env
+
+# logs / OS
+*.log
+.DS_Store
+Thumbs.db
+
+# local capture profile
+.capture-profile/

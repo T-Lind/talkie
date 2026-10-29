@@ -1,0 +1,27 @@
+{
+  "name": "@talkie/server",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Team Talkie realtime server — ephemeral rooms over WebSocket.",
+  "scripts": {
+    "dev": "tsx watch --clear-screen=false src/index.ts",
+    "build": "node scripts/build.mjs",
+    "start": "node dist/server.js",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "ws": "^8.22.0"
+  },
+  "devDependencies": {
+    "@talkie/protocol": "*",
+    "@types/node": "^24.0.0",
+    "@types/ws": "^8.18.1",
+    "esbuild": "^0.28.2",
+    "tsx": "^4.23.15",
+    "typescript": "^5.9.3",
+    "vitest": "^5.0.5"
+  }
+}
