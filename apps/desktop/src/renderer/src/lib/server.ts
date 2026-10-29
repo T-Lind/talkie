@@ -72,7 +72,7 @@ export async function warmServer(serverUrl: string, timeoutMs = 12_000): Promise
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), timeoutMs);
   try {
-    const response = await fetch(`${base}/healthz`, {
+    const response = await fetch(`${base}/api/health`, {
       signal: controller.signal,
       cache: 'no-store',
       headers: { accept: 'application/json' },
@@ -92,7 +92,7 @@ export async function probeServer(serverUrl: string, timeoutMs = 2600): Promise<
   const timer = setTimeout(() => controller.abort(), timeoutMs);
   const started = performance.now();
   try {
-    const response = await fetch(`${base}/healthz`, {
+    const response = await fetch(`${base}/api/health`, {
       signal: controller.signal,
       cache: 'no-store',
       headers: { accept: 'application/json' },
@@ -136,3 +136,4 @@ export async function lookupRoom(serverUrl: string, codeInput: string): Promise<
     clearTimeout(timer);
   }
 }
+

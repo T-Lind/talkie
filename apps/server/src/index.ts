@@ -116,9 +116,9 @@ const server = createServer((req, res) => {
       version: config.version,
       protocol: PROTOCOL_VERSION,
       websocket: '/ws',
-      health: '/healthz',
+      health: '/api/health',
       endpoints: {
-        health: 'GET /healthz',
+        health: 'GET /api/health',
         room: 'GET /api/rooms/:code',
         realtime: 'WS /ws',
       },
@@ -126,7 +126,7 @@ const server = createServer((req, res) => {
     return;
   }
 
-  if (url.pathname === '/healthz') {
+  if (url.pathname === '/api/health' || url.pathname === '/healthz') {
     const stats = hub.stats();
     json(res, 200, {
       ok: true,

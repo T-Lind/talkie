@@ -27,13 +27,15 @@ No accounts. No chat. No meeting plugins. Eight people, one quiet list.
 - **Ephemeral.** Rooms live in memory. Nothing is written to a database and everything
   disappears when the room ends.
 
-It is deliberately small: a content-sized desktop widget with one button. Open **Invite**
-or **Settings** and the window temporarily makes room for the sheet, then collapses again.
+It is deliberately small: a content-sized desktop widget with one button. **Settings** and
+**Invite** scroll inside whatever height the room already has, so opening them never
+stretches the widget.
 
 ## Screenshots
 
 <p>
   <img src="docs/preview-onboarding.png" alt="The compact Talkie welcome screen" width="300" />
+  <img src="docs/preview-settings.png" alt="Room settings scrolling inside the same window size" width="300" />
 </p>
 
 ## Quick start
@@ -89,7 +91,7 @@ never affect who is next.
 
 ### Desktop app
 
-Open **Settings** (bottom-right on the welcome screen, or the room menu) to change:
+Open **Settings** (on the welcome screen, or the gear in the room's top bar) to change:
 
 - display name
 - server URL
@@ -103,8 +105,21 @@ To bake a server URL into a build, create `apps/desktop/.env`:
 VITE_TALKIE_SERVER=wss://your-service.run.app
 ```
 
-The default is `ws://localhost:8787`. The app accepts `https://` / `wss://` URLs and
-appends `/ws` when needed.
+Source builds default to `ws://localhost:8787`; release builds bake in a public server
+(below). The app accepts `https://` / `wss://` URLs and appends `/ws` when needed.
+
+### Hosted server
+
+Release builds point at:
+
+```
+wss://talkie-420782505771.us-central1.run.app
+```
+
+That instance runs on Google Cloud Run in the maintainer's TAMU project (us-central1),
+scales to zero when idle, and wakes on the app's first request. It is rate limited per IP
+for room creation, joins, and concurrent connections. Anyone can point the app at their
+own server instead in **Settings**.
 
 ### Server
 

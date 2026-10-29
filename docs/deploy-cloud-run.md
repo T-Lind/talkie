@@ -69,14 +69,14 @@ wss://team-talkie-xxxxxxxx-uc.a.run.app
 
 The client appends `/ws`. The server also exposes:
 
-- `GET /healthz` — process and room counts
+- `GET /api/health` — process and room counts
 - `GET /api/rooms/:code` — room metadata used by the join screen
 - `WS /ws` — realtime traffic
 
 ## 3. Verify
 
 ```bash
-curl https://YOUR_SERVICE_URL/healthz
+curl https://YOUR_SERVICE_URL/api/health
 # {"ok":true,"service":"team-talkie",...}
 ```
 
@@ -119,3 +119,4 @@ If you outgrow a single instance, the room model needs to move out of `Hub`:
 4. Revisit the 8-person, 30-minute room TTL assumptions with the new storage costs.
 
 The protocol is intentionally small, so a shared-store version can keep the same client.
+

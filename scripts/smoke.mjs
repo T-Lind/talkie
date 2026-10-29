@@ -58,7 +58,7 @@ async function waitForServer(timeoutMs = 10000) {
   const started = Date.now();
   while (Date.now() - started < timeoutMs) {
     try {
-      const res = await fetch(`${BASE}/healthz`);
+      const res = await fetch(`${BASE}/api/health`);
       if (res.ok) return;
     } catch {
       // not up yet
@@ -144,7 +144,7 @@ try {
   assert.equal(closed.reason, 'ended');
 
   await sleep(120);
-  const health = await (await fetch(`${BASE}/healthz`)).json();
+  const health = await (await fetch(`${BASE}/api/health`)).json();
   assert.equal(health.ok, true);
   assert.equal(health.rooms, 0);
 
@@ -157,3 +157,4 @@ try {
   b?.close();
   server.kill();
 }
+
